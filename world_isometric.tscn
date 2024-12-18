@@ -1,0 +1,54 @@
+[gd_scene load_steps=5 format=3 uid="uid://c6o7sht0uvumc"]
+
+[ext_resource type="Script" path="res://world_isometric.gd" id="1_1aoxh"]
+[ext_resource type="PackedScene" uid="uid://bkdfj7u2kdghp" path="res://Terrain/terrain_manager.tscn" id="1_rnbgh"]
+[ext_resource type="PackedScene" uid="uid://bjbpcuivnoaap" path="res://Characters/enemy_battler.tscn" id="2_4ycaf"]
+[ext_resource type="PackedScene" uid="uid://dd00q004ehxtx" path="res://Characters/player_battler.tscn" id="3_1i0co"]
+
+[node name="World_Isometric" type="Node2D"]
+script = ExtResource("1_1aoxh")
+metadata/_edit_vertical_guides_ = [0.0, 270.0]
+
+[node name="TerrainManager" parent="." instance=ExtResource("1_rnbgh")]
+position = Vector2(3, 0)
+
+[node name="EnemyBattler" parent="." instance=ExtResource("2_4ycaf")]
+position = Vector2(218, 95)
+
+[node name="PlayerBattler" parent="." instance=ExtResource("3_1i0co")]
+position = Vector2(59, 245)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(135, 240)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TurnActionButtons" type="HBoxContainer" parent="CanvasLayer"]
+offset_left = 86.0
+offset_top = 416.0
+offset_right = 189.0
+offset_bottom = 456.0
+
+[node name="AttackButton" type="Button" parent="CanvasLayer/TurnActionButtons"]
+layout_mode = 2
+text = "Attack
+"
+
+[node name="SkipTurnButton" type="Button" parent="CanvasLayer/TurnActionButtons"]
+layout_mode = 2
+text = "Skip
+"
+
+[node name="BattleEndPanel" type="Panel" parent="CanvasLayer"]
+offset_left = 9.0
+offset_top = 2.0
+offset_right = 49.0
+offset_bottom = 42.0
+
+[node name="BattleEndText" type="RichTextLabel" parent="CanvasLayer/BattleEndPanel"]
+layout_mode = 0
+offset_left = 52.0
+offset_top = 5.0
+offset_right = 229.0
+offset_bottom = 45.0
+text = "Battle end message"

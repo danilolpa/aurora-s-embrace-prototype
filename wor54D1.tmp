@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://c6o7sht0uvumc"]
+
+[ext_resource type="PackedScene" uid="uid://bkdfj7u2kdghp" path="res://Terrain/terrain_manager.tscn" id="1_rnbgh"]
+[ext_resource type="PackedScene" uid="uid://bjbpcuivnoaap" path="res://Characters/enemy_battler.tscn" id="2_4ycaf"]
+[ext_resource type="PackedScene" uid="uid://dd00q004ehxtx" path="res://Characters/player_battler.tscn" id="3_1i0co"]
+
+[node name="World_Isometric" type="Node2D"]
+metadata/_edit_vertical_guides_ = [0.0, 270.0]
+
+[node name="TerrainManager" parent="." instance=ExtResource("1_rnbgh")]
+position = Vector2(3, 0)
+
+[node name="EnemyBattler" parent="." instance=ExtResource("2_4ycaf")]
+position = Vector2(208, 116)
+
+[node name="PlayerBattler" parent="." instance=ExtResource("3_1i0co")]
+position = Vector2(52, 220)

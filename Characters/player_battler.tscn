@@ -1,0 +1,230 @@
+[gd_scene load_steps=19 format=3 uid="uid://dd00q004ehxtx"]
+
+[ext_resource type="Texture2D" uid="uid://bcec06aaobj1x" path="res://Characters/Assets/Archer_Blue.png" id="1_588n2"]
+[ext_resource type="Script" path="res://Characters/player_battler.gd" id="1_d0n6f"]
+[ext_resource type="Texture2D" uid="uid://o17pso50ebll" path="res://Characters/Assets/Explosions.png" id="2_4s1pu"]
+[ext_resource type="Resource" uid="uid://qi02uijhp6xp" path="res://Battle/player_battler_1.tres" id="2_f6pcg"]
+
+[sub_resource type="Animation" id="Animation_tte0j"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TurnIndicator:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_8h72h"]
+resource_name = "in_turn"
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TurnIndicator:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1, 0.615572),
+"update": 0,
+"values": [Color(1, 1, 1, 0.407843), Color(1, 1, 1, 1), Color(1, 1, 1, 0.572549)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_30jju"]
+_data = {
+"RESET": SubResource("Animation_tte0j"),
+"in_turn": SubResource("Animation_8h72h")
+}
+
+[sub_resource type="Theme" id="Theme_77725"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_h5jdk"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_iujgc"]
+texture = SubResource("NoiseTexture2D_h5jdk")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xw2ei"]
+
+[sub_resource type="Animation" id="Animation_kyrcf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = false
+tracks/0/path = NodePath("HitFX:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HitFX:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_8ee88"]
+resource_name = "play"
+length = 0.9
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HitFX:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HitFX:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cytud"]
+_data = {
+"RESET": SubResource("Animation_kyrcf"),
+"play": SubResource("Animation_8ee88")
+}
+
+[sub_resource type="Animation" id="Animation_br710"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [31]
+}
+
+[sub_resource type="Animation" id="Animation_p04tu"]
+resource_name = "attack"
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [31, 32, 33, 34, 35, 36, 37, 38, 39]
+}
+
+[sub_resource type="Animation" id="Animation_oivdn"]
+resource_name = "idle"
+length = 0.6
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_e2fbf"]
+_data = {
+"RESET": SubResource("Animation_br710"),
+"attack": SubResource("Animation_p04tu"),
+"idle": SubResource("Animation_oivdn")
+}
+
+[node name="PlayerBattler" type="Node2D" groups=["PlayerBattler"]]
+script = ExtResource("1_d0n6f")
+stats_resource = ExtResource("2_f6pcg")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_588n2")
+hframes = 8
+vframes = 7
+frame = 31
+
+[node name="TurnIndicator" type="Panel" parent="."]
+modulate = Color(1, 1, 1, 0)
+self_modulate = Color(0, 0, 0, 1)
+offset_left = -45.0
+offset_top = 20.0
+offset_right = 46.0
+offset_bottom = 39.0
+metadata/_edit_use_anchors_ = true
+
+[node name="TurnIndicatorAnimation" type="AnimationPlayer" parent="TurnIndicator"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_30jju")
+}
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -53.0
+offset_top = -70.0
+offset_right = 44.0
+offset_bottom = -43.0
+grow_vertical = 2
+theme = SubResource("Theme_77725")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0.821638, 0.285312, 0.70784, 1)
+theme_override_styles/background = SubResource("StyleBoxTexture_iujgc")
+theme_override_styles/fill = SubResource("StyleBoxFlat_xw2ei")
+metadata/_edit_use_anchors_ = true
+
+[node name="HitFX" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(2, 0)
+texture = ExtResource("2_4s1pu")
+hframes = 9
+
+[node name="HitFXAnimation" type="AnimationPlayer" parent="HitFX"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_cytud")
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_e2fbf")
+}
+autoplay = "idle"
