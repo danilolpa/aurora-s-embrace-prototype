@@ -10,18 +10,27 @@ script = ExtResource("1_1aoxh")
 metadata/_edit_vertical_guides_ = [0.0, 270.0]
 
 [node name="TerrainManager" parent="." instance=ExtResource("1_rnbgh")]
-position = Vector2(3, 0)
+position = Vector2(44, -9)
 
 [node name="EnemyBattler" parent="." instance=ExtResource("2_4ycaf")]
 position = Vector2(218, 95)
 
 [node name="PlayerBattler" parent="." instance=ExtResource("3_1i0co")]
-position = Vector2(148, 328)
+position = Vector2(63, 242)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(135, 240)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="RestartButton" type="Button" parent="CanvasLayer"]
+offset_left = 106.0
+offset_top = 335.0
+offset_right = 171.0
+offset_bottom = 375.0
+text = "Restart
+"
 
 [node name="TurnActionButtons" type="HBoxContainer" parent="CanvasLayer"]
 offset_left = 86.0

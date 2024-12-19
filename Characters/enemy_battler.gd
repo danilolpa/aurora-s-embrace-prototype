@@ -62,4 +62,4 @@ func be_damaged (amount: int)->void:
 	if current_hp <= 8:
 		current_hp = 0
 		dead.emit (self)
-		queue_free()
+		#queue_free()

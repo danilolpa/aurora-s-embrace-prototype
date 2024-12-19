@@ -4,8 +4,10 @@ extends Node2D
 @onready var turn_action_buttons: HBoxContainer = $CanvasLayer/TurnActionButtons
 @onready var skip_turn_button: Button = $CanvasLayer/TurnActionButtons/SkipTurnButton 
 @onready var attack_button: Button = $CanvasLayer/TurnActionButtons/AttackButton 
+@onready var restart_button: Button = $CanvasLayer/RestartButton
 @onready var battle_end_panel: Panel = $CanvasLayer/BattleEndPanel
 @onready var battle_end_text: RichTextLabel = $CanvasLayer/BattleEndPanel/BattleEndText
+@onready var battleTime: CanvasLayer = $CanvasLayer
 
 var all_battlers = []
 var player_battlers = []
@@ -14,6 +16,16 @@ var current_turn: Node2D
 var current_turn_index: int
 
 func _ready()-> void:
+	_start_combat()
+	restart_button.visible = false
+	restart_button.pressed.connect(_restart_combat)
+
+func _restart_combat() -> void: 
+	_start_combat()
+	
+
+func _start_combat() -> void:
+	battleTime.show()
 	turn_action_buttons.hide()
 	battle_end_panel.hide()
 	player_battlers = get_tree().get_nodes_in_group("PlayerBattler")
@@ -54,7 +66,7 @@ func _update_turn()->void:
 func _next_turn()->void:
 	if turn_action_buttons.visible:
 		turn_action_buttons.hide()
-	current_turn.stop_turn()
+		current_turn.stop_turn()
 	
 	if _check_for_battle_end() == false:
 		current_turn_index = (current_turn_index + 1) % all_battlers.size() 
@@ -105,6 +117,8 @@ func _show_battle_end_panel (message: String) -> void:
 	battle_end_text.clear()
 	battle_end_text.append_text("[center]%s" % [message])
 	battle_end_panel.show()
+	restart_button.show()
+	
 	
 	if turn_action_buttons.visible:
 		turn_action_buttons.hide()

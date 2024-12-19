@@ -6,6 +6,6 @@
 script = ExtResource("1_y2q2p")
 type = 0
 max_hp = 400
-min_damage = 100
-max_damage = 200
+min_damage = 200
+max_damage = 400
 turn_speed = 50
